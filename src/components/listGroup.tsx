@@ -13,7 +13,7 @@ function ListGroup() {
       <ul className="list-group">
         {items.map((item, index) => (
           <li
-            key={item}
+            key={index}
             className={
               selectedIndex === index
                 ? "list-group-item active"
