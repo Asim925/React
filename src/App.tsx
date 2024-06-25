@@ -2,7 +2,8 @@
 // import ListGroup from "./components/listGroup";
 
 // Alert
-// import Alert from "./components/Alert";
+import { useState } from "react";
+import Alert from "./components/Alert";
 
 // Exercise 1 : Button
 import Button from "./components/Button.tsx";
@@ -33,10 +34,15 @@ function App() {
   // );
   //
   //
-  //==========++++++++ EXERCISE 1 : Buttons+++++====================//
+  //==========++++++++ EXERCISES +++++====================//
+
+  let [alertVisiblity, setalertVisiblity] = useState(false);
   return (
     <>
-      <Button onClick={() => console.log("clicked")} color="secondary">
+      {alertVisiblity && (
+        <Alert onClose={() => setalertVisiblity(false)}>My alert</Alert>
+      )}
+      <Button onClick={() => setalertVisiblity(true)} color="secondary">
         MY btn
       </Button>
     </>
