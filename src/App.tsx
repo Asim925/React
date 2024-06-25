@@ -1,13 +1,18 @@
 // listgroup
-// import ListGroup from "./components/listGroup";
+// import ListGroup from "./components/ListGroup/listGroup";
 
 // Alert
-import { useState } from "react";
-import Alert from "./components/Alert";
+// import { useState } from "react";
+// import Alert from "./components/Alert";
 
 // Exercise 1 : Button
-import Button from "./components/Button.tsx";
+// import Button from "./components/Button.tsx";
 
+// Icon
+// import { AiFillAccountBook } from "react-icons/ai";
+
+// like Icon
+import Like from "./components/Like";
 function App() {
   // ===================== listGroup
   //
@@ -35,16 +40,32 @@ function App() {
   //
   //
   //==========++++++++ EXERCISES +++++====================//
-
-  let [alertVisiblity, setalertVisiblity] = useState(false);
+  //
+  // let [alertVisiblity, setalertVisiblity] = useState(false);
+  // return (
+  //   <>
+  //     {alertVisiblity && (
+  //       <Alert onClose={() => setalertVisiblity(false)}>My alert</Alert>
+  //     )}
+  //     <Button onClick={() => setalertVisiblity(true)} color="secondary">
+  //       MY btn
+  //     </Button>
+  //   </>
+  // );
+  //
+  //==================== React Icons =======================//
+  //
+  // return (
+  //   <>
+  //     <AiFillAccountBook color="red" size={50} />
+  //   </>
+  // );
+  //
+  //================ LIKE ICON ===============//
+  //
   return (
     <>
-      {alertVisiblity && (
-        <Alert onClose={() => setalertVisiblity(false)}>My alert</Alert>
-      )}
-      <Button onClick={() => setalertVisiblity(true)} color="secondary">
-        MY btn
-      </Button>
+      <Like onClick={() => console.log("CLICKED")} />
     </>
   );
 }
