@@ -1,7 +1,8 @@
 // listgroup
 // import ListGroup from "./components/ListGroup/listGroup";
 
-// Alert
+import ToggleText from "./components/ToggleText";
+
 // import { useState } from "react";
 // import Alert from "./components/Alert";
 
@@ -12,7 +13,8 @@
 // import { AiFillAccountBook } from "react-icons/ai";
 
 // like Icon
-import Like from "./components/Like";
+// import Like from "./components/Like";
+
 function App() {
   // ===================== listGroup
   //
@@ -63,9 +65,15 @@ function App() {
   //
   //================ LIKE ICON ===============//
   //
+  // return (
+  //   <>
+  //     <Like onClick={() => console.log("CLICKED")} />
+  //   </>
+  // );
+  //////
   return (
     <>
-      <Like onClick={() => console.log("CLICKED")} />
+      <ToggleText />
     </>
   );
 }
