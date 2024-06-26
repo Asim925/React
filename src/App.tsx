@@ -1,8 +1,10 @@
 // listgroup
 // import ListGroup from "./components/ListGroup/listGroup";
 
-import ToggleText from "./components/ToggleText";
+// toggle text example
+// import ToggleText from "./components/ToggleText";
 
+//alert
 // import { useState } from "react";
 // import Alert from "./components/Alert";
 
@@ -70,11 +72,13 @@ function App() {
   //     <Like onClick={() => console.log("CLICKED")} />
   //   </>
   // );
-  //////
-  return (
-    <>
-      <ToggleText />
-    </>
-  );
+  //
+  //=================== EXAMPLE ====================//
+  //
+  // return (
+  //   <>
+  //     <ToggleText />
+  //   </>
+  // );
 }
 export default App;
