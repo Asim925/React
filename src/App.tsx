@@ -1,6 +1,8 @@
 // listgroup
 // import ListGroup from "./components/ListGroup/listGroup";
 
+import { useState } from "react";
+
 // toggle text example
 // import ToggleText from "./components/ToggleText";
 
@@ -80,5 +82,12 @@ function App() {
   //     <ToggleText />
   //   </>
   // );
+  //
+  //=================== OBJECTS =====================//
+  //
+  let [person, setPerson] = useState({
+    firstName: "",
+    lastName: "",
+  });
 }
 export default App;
