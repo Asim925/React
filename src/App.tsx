@@ -114,25 +114,43 @@ function App() {
   //
   // =================== Nested OBJECTS ===================== //
   //
-  const [customer, setCustomer] = useState({
-    name: "asim",
-    address: {
-      city: "karachi",
-      zipCode: 94991,
-    },
-  });
+  // const [customer, setCustomer] = useState({
+  //   name: "asim",
+  //   address: {
+  //     city: "karachi",
+  //     zipCode: 94991,
+  //   },
+  // });
+  // const handleSelected = () => {
+  //   setCustomer({
+  //     ...customer,
+  //     address: { ...customer.address, zipCode: 33333 },
+  //   });
+  // };
+  // return (
+  //   <>
+  //     {customer.address.zipCode}
+  //     <button onClick={handleSelected}>Click kr</button>
+  //   </>
+  // );
+  //
+  // =================== updating Arrays ===================== //
+  //
+  const [tags, setTags] = useState(["happy", "sad"]);
 
   const handleSelected = () => {
-    setCustomer({
-      ...customer,
-      address: { ...customer.address, zipCode: 33333 },
-    });
+    // add
+    setTags([...tags, "pagal"]);
+    // remove
+    setTags(tags.filter((tag) => tag !== "sad"));
+    // updating
+    setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
   };
 
   return (
     <>
-      {customer.address.zipCode}
-      <button onClick={handleSelected}>Click kr</button>
+      {tags}
+      <button onClick={handleSelected}>click kr !</button>
     </>
   );
 }
