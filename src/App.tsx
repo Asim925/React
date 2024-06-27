@@ -1,13 +1,12 @@
-// listgroup
-// import ListGroup from "./components/ListGroup/listGroup";
-
 import { useState } from "react";
+
+// listgroup
+// import ListGroup from "./components/listGroup";
 
 // toggle text example
 // import ToggleText from "./components/ToggleText";
 
-//alert
-// import { useState } from "react";
+// alert
 // import Alert from "./components/Alert";
 
 // Exercise 1 : Button
@@ -19,8 +18,11 @@ import { useState } from "react";
 // like Icon
 // import Like from "./components/Like";
 
+// strict Mode
+// import Message2 from "./components/Mespersonsage2";
+
 function App() {
-  // ===================== listGroup
+  // ===================== listGroup =================== //
   //
   // const cities = ["karachi", "lahore", "india", "pakistan"];
   // let colors = ["green", "orange"];
@@ -34,7 +36,7 @@ function App() {
   //   </>
   // );
   //
-  // =================== Alert
+  // =================== Alert ======================== //
   //
   // return (
   //   <>
@@ -45,7 +47,7 @@ function App() {
   // );
   //
   //
-  //==========++++++++ EXERCISES +++++====================//
+  // ========== ++++++++ EXERCISES +++++ ==================== //
   //
   // let [alertVisiblity, setalertVisiblity] = useState(false);
   // return (
@@ -59,7 +61,7 @@ function App() {
   //   </>
   // );
   //
-  //==================== React Icons =======================//
+  // ==================== React Icons ======================= //
   //
   // return (
   //   <>
@@ -67,7 +69,7 @@ function App() {
   //   </>
   // );
   //
-  //================ LIKE ICON ===============//
+  // ================ LIKE ICON =============== //
   //
   // return (
   //   <>
@@ -75,19 +77,63 @@ function App() {
   //   </>
   // );
   //
-  //=================== EXAMPLE ====================//
+  // =================== EXAMPLE ==================== //
   //
   // return (
   //   <>
   //     <ToggleText />
   //   </>
   // );
+  // =================== Strict Mode =================== //
   //
-  //=================== OBJECTS =====================//
+  // return (
+  //   <>
+  //     <Message2 />
+  //   </>
+  // );
   //
-  let [person, setPerson] = useState({
-    firstName: "",
-    lastName: "",
+  // =================== OBJECTS ===================== //
+  //
+  // let [drink, setDrink] = useState({
+  //   title: "pepsi",
+  //   price: 5,
+  // });
+  // let handle = () => {
+  //   // let newDrink = {
+  //   //   ...drink, // spread operator !
+  //   //   price: drink.price + 1,
+  //   // };
+  //   setDrink({ ...drink, price: drink.price + 1 });
+  // };
+  // return (
+  //   <>
+  //     {drink.price}
+  //     <button onClick={handle}>Click me </button>
+  //   </>
+  // );
+  //
+  // =================== Nested OBJECTS ===================== //
+  //
+  const [customer, setCustomer] = useState({
+    name: "asim",
+    address: {
+      city: "karachi",
+      zipCode: 94991,
+    },
   });
+
+  const handleSelected = () => {
+    setCustomer({
+      ...customer,
+      address: { ...customer.address, zipCode: 33333 },
+    });
+  };
+
+  return (
+    <>
+      {customer.address.zipCode}
+      <button onClick={handleSelected}>Click kr</button>
+    </>
+  );
 }
 export default App;
