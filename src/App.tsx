@@ -157,31 +157,31 @@ function App() {
   //
   // =================== updating Array of Objects ===================== //
   //
-  const [bugs, setBugs] = useState([
-    { id: 1, title: "bug 1", fixed: false },
-    { id: 2, title: "bug 2", fixed: false },
-  ]);
-
-  let handleSelected = () => {
-    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
-    setBugs(
-      produce((draft) => {
-        const bug = draft.find((bug) => bug.id === 1);
-        if (bug) bug.fixed = true;
-      })
-    );
-  };
-
-  return (
-    <div>
-      {bugs.map((bug) => (
-        <p key={bug.id}>
-          {bug.title} {bug.fixed ? "fixed" : "not fixed"}
-        </p>
-      ))}
-
-      <button onClick={handleSelected}>click kr dabbu</button>
-    </div>
-  );
+  // const [bugs, setBugs] = useState([
+  //   { id: 1, title: "bug 1", fixed: false },
+  //   { id: 2, title: "bug 2", fixed: false },
+  // ]);
+  // let handleSelected = () => {
+  //   // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+  //   setBugs(
+  //     produce((draft) => {
+  //       const bug = draft.find((bug) => bug.id === 1);
+  //       if (bug) bug.fixed = true;
+  //     })
+  //   );
+  // };
+  // return (
+  //   <div>
+  //     {bugs.map((bug) => (
+  //       <p key={bug.id}>
+  //         {bug.title} {bug.fixed ? "fixed" : "not fixed"}
+  //       </p>
+  //     ))}
+  //     <button onClick={handleSelected}>click kr dabbu</button>
+  //   </div>
+  // );
+  //
+  // =================== updating Array of Objects ===================== //
+  //
 }
 export default App;
