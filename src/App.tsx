@@ -21,6 +21,9 @@ import { useState } from "react";
 // strict Mode
 // import Message2 from "./components/Mespersonsage2";
 
+// Immer Library (package)
+import produce from "immer";
+
 function App() {
   // ===================== listGroup =================== //
   //
@@ -136,22 +139,49 @@ function App() {
   //
   // =================== updating Arrays ===================== //
   //
-  const [tags, setTags] = useState(["happy", "sad"]);
+  // const [tags, setTags] = useState(["happy", "sad"]);
+  // const handleSelected = () => {
+  //   // add
+  //   setTags([...tags, "pagal"]);
+  //   // remove
+  //   setTags(tags.filter((tag) => tag !== "sad"));
+  //   // updating
+  //   setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
+  // };
+  // return (
+  //   <>
+  //     {tags}
+  //     <button onClick={handleSelected}>click kr !</button>
+  //   </>
+  // );
+  //
+  // =================== updating Array of Objects ===================== //
+  //
+  const [bugs, setBugs] = useState([
+    { id: 1, title: "bug 1", fixed: false },
+    { id: 2, title: "bug 2", fixed: false },
+  ]);
 
-  const handleSelected = () => {
-    // add
-    setTags([...tags, "pagal"]);
-    // remove
-    setTags(tags.filter((tag) => tag !== "sad"));
-    // updating
-    setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
+  let handleSelected = () => {
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
   };
 
   return (
-    <>
-      {tags}
-      <button onClick={handleSelected}>click kr !</button>
-    </>
+    <div>
+      {bugs.map((bug) => (
+        <p key={bug.id}>
+          {bug.title} {bug.fixed ? "fixed" : "not fixed"}
+        </p>
+      ))}
+
+      <button onClick={handleSelected}>click kr dabbu</button>
+    </div>
   );
 }
 export default App;
