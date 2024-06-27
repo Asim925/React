@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ExpandedText from "./components/ExpandedText";
 
 // listgroup
 // import ListGroup from "./components/listGroup";
@@ -22,7 +23,11 @@ import { useState } from "react";
 // import Message2 from "./components/Mespersonsage2";
 
 // Immer Library (package)
-import produce from "immer";
+// import produce from "immer";
+
+// sharing states (carts)
+// import NavBar from "./components/NavBar";
+// import Cart from "./components/Cart";
 
 function App() {
   // ===================== listGroup =================== //
@@ -181,7 +186,88 @@ function App() {
   //   </div>
   // );
   //
-  // =================== updating Array of Objects ===================== //
+  // =================== Sharing the states ===================== //
   //
+  // const [cartItems, setCartItems] = useState(["product1", "product2"]);
+  // return (
+  //   <>
+  //     <NavBar cartItemCount={cartItems.length} />
+  //     <Cart cartItems={cartItems} onClear={() => setCartItems([])} />
+  //   </>
+  // );
+  //
+  // =================== Exercise 1: updating states ===================== //
+  //
+  // const [game, setGame] = useState({
+  //   id: 1,
+  //   player: { name: "john" },
+  // });
+  // let handleClick = () => {
+  //   setGame({ ...game, player: { ...game.player, name: "Bob" } });
+  // };
+  // return (
+  //   <>
+  //     {game.player.name}
+  //     <button onClick={handleClick}>Click to change name</button>
+  //   </>
+  // );
+  //
+  // =================== Exercise 2: updating states ===================== //
+  //
+  // const [pizza, setPizza] = useState({
+  //   name: "spicy",
+  //   toppings: ["mushroom"],
+  // });
+  // let handleClick = () => {
+  //   setPizza({ ...pizza, toppings: [...pizza.toppings, "cheese"] });
+  // };
+  // return (
+  //   <>
+  //     <button onClick={handleClick}>Click to add toppings</button>
+  //   </>
+  // );
+  //
+  // =================== Exercise 3: updating states ===================== //
+  //
+  // const [cart, setCart] = useState({
+  //   discount: 0.1,
+  //   items: [
+  //     { id: 1, title: "product1", quantity: 1 },
+  //     { id: 1, title: "product1", quantity: 1 },
+  //   ],
+  // });
+  // let handleClick = () => {
+  //   setCart({
+  //     ...cart,
+  //     items: cart.items.map((item) =>
+  //       item.id === 1 ? { ...item, quantity: item.quantity + 1 } : item
+  //     ),
+  //   });
+  // };
+  // return (
+  //   <>
+  //     <button onClick={handleClick}>click to increment quantity</button>{" "}
+  //   </>
+  // );
+  //
+  // =================== Exercise 4: updating states ===================== //
+  //
+  return (
+    <>
+      <ExpandedText maxChars={150}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, minima
+        est repellendus officiis incidunt perferendis consequuntur labore fugit
+        veritatis odio itaque obcaecati alias numquam molestias sequi cumque.
+        Maiores, voluptate adipisci eum inventore culpa ut vitae ipsa sapiente
+        perspiciatis voluptas, molestias quas eaque dolore accusantium
+        voluptates dignissimos ipsam ipsum earum expedita at quos commodi sequi
+        hic excepturi! Eaque animi repudiandae delectus distinctio minus nam
+        odio magni adipisci, repellat nobis, blanditiis praesentium quaerat
+        rerum molestiae velit culpa! Necessitatibus veritatis, nihil eius earum
+        praesentium ad distinctio culpa voluptas reprehenderit dolorum,
+        cupiditate atque aut hic voluptates sequi deserunt unde repudiandae
+      </ExpandedText>
+    </>
+  );
 }
 export default App;
