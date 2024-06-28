@@ -1,5 +1,8 @@
 // import { useState } from "react";
 
+//form
+import Form from "./components/Form";
+
 // listgroup
 // import ListGroup from "./components/listGroup";
 
@@ -271,5 +274,13 @@ function App() {
   //     </ExpandedText>
   //   </>
   // );
+  //
+  // =================== Form ===================== //
+  //
+  return (
+    <>
+      <Form />
+    </>
+  );
 }
 export default App;
