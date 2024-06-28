@@ -1,5 +1,4 @@
-import { useState } from "react";
-import ExpandedText from "./components/ExpandedText";
+// import { useState } from "react";
 
 // listgroup
 // import ListGroup from "./components/listGroup";
@@ -28,6 +27,9 @@ import ExpandedText from "./components/ExpandedText";
 // sharing states (carts)
 // import NavBar from "./components/NavBar";
 // import Cart from "./components/Cart";
+
+// expanded text exercise
+// import ExpandedText from "./components/ExpandedText";
 
 function App() {
   // ===================== listGroup =================== //
@@ -252,22 +254,22 @@ function App() {
   //
   // =================== Exercise 4: updating states ===================== //
   //
-  return (
-    <>
-      <ExpandedText maxChars={150}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, minima
-        est repellendus officiis incidunt perferendis consequuntur labore fugit
-        veritatis odio itaque obcaecati alias numquam molestias sequi cumque.
-        Maiores, voluptate adipisci eum inventore culpa ut vitae ipsa sapiente
-        perspiciatis voluptas, molestias quas eaque dolore accusantium
-        voluptates dignissimos ipsam ipsum earum expedita at quos commodi sequi
-        hic excepturi! Eaque animi repudiandae delectus distinctio minus nam
-        odio magni adipisci, repellat nobis, blanditiis praesentium quaerat
-        rerum molestiae velit culpa! Necessitatibus veritatis, nihil eius earum
-        praesentium ad distinctio culpa voluptas reprehenderit dolorum,
-        cupiditate atque aut hic voluptates sequi deserunt unde repudiandae
-      </ExpandedText>
-    </>
-  );
+  // return (
+  //   <>
+  //     <ExpandedText maxChars={150}>
+  //       Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, minima
+  //       est repellendus officiis incidunt perferendis consequuntur labore fugit
+  //       veritatis odio itaque obcaecati alias numquam molestias sequi cumque.
+  //       Maiores, voluptate adipisci eum inventore culpa ut vitae ipsa sapiente
+  //       perspiciatis voluptas, molestias quas eaque dolore accusantium
+  //       voluptates dignissimos ipsam ipsum earum expedita at quos commodi sequi
+  //       hic excepturi! Eaque animi repudiandae delectus distinctio minus nam
+  //       odio magni adipisci, repellat nobis, blanditiis praesentium quaerat
+  //       rerum molestiae velit culpa! Necessitatibus veritatis, nihil eius earum
+  //       praesentium ad distinctio culpa voluptas reprehenderit dolorum,
+  //       cupiditate atque aut hic voluptates sequi deserunt unde repudiandae
+  //     </ExpandedText>
+  //   </>
+  // );
 }
 export default App;
