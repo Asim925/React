@@ -1,7 +1,10 @@
-// import { useState } from "react";
+import { useState } from "react";
 
-//form
-import Form from "./components/Form";
+// form
+// import Form from "./components/Form";
+import ExpenseList from "./components/Expense-Tracker/ExpenseList";
+import ExpenseFilter from "./components/Expense-Tracker/ExpenseFilter";
+import ExpenseForm from "./components/Expense-Tracker/ExpenseForm";
 
 // listgroup
 // import ListGroup from "./components/listGroup";
@@ -277,9 +280,47 @@ function App() {
   //
   // =================== Form ===================== //
   //
+  // return (
+  //   <>
+  //     <Form />
+  //   </>
+  // );
+  //
+  // =================== Form: Project ===================== //
+  //
+
+  let [expenses, setExpenses] = useState([
+    { id: 1, description: "AAA", amount: 5, category: "Utilities" },
+  ]);
+
+  let [selectedCategory, setSelectedCategory] = useState("");
+
+  let visibleExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory)
+    : expenses;
+
   return (
     <>
-      <Form />
+      <div className="mb-5">
+        <ExpenseForm
+          onSubmit={(data) =>
+            setExpenses([...expenses, { ...data, id: expenses.length + 1 }])
+          }
+        />
+      </div>
+
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
+
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) =>
+          setExpenses(expenses.filter((expense) => expense.id !== id))
+        }
+      />
     </>
   );
 }
