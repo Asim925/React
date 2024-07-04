@@ -1,6 +1,11 @@
-// import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios, { AxiosError } from "axios";
 
-// import { useEffect, useRef, useState } from "react";
+interface Users {
+  id: number;
+  name: string;
+}
+
 // import ProductList from "./components/ProductList";
 
 // form
@@ -354,5 +359,70 @@ function App() {
   // );
   //
   // =================== CLEAN UP CODE ===================== //
+  //
+  // let connect = () => console.log("connecting");
+  // let disconnect = () => console.log("disconnecting");
+  // useEffect(() => {
+  //   connect();
+  //   document.title = "my app";
+  //   return () => disconnect();
+  // });
+  // return <div></div>;
+  //
+  //==================== example
+  //
+  // const [count, setCount] = useState(0);
+  // useEffect(() => {
+  //   document.title = `You clicked ${count} times`;
+  // }, [count]);
+  // return (
+  //   <div>
+  //     <p>You clicked {count} times</p>
+  //     <button onClick={() => setCount(count + 1)}>Click me</button>
+  //   </div>
+  // );
+  //
+  // =================== Fetching The Data ===================== //
+  //
+  // interface "USER" on top
+  const [users, setUsers] = useState<Users[]>([]);
+  const [error, setError] = useState("");
+
+  //============= async, await =========//
+
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     try {
+  //       let response = await axios.get(
+  //         "https://jsonplaceholder.typicode.com/users"
+  //       );
+  //       setUsers(response.data);
+  //     } catch (err) {
+  //       setError((err as AxiosError).message);
+  //     }
+  //   };
+
+  //   fetchUsers();
+  // });
+
+  // ============= normal =========//
+
+  useEffect(() => {
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => setUsers(response.data))
+      .catch((err) => setError(err.message));
+  }, []);
+
+  return (
+    <>
+      {error && <p className="text-danger">{error}</p>}
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+    </>
+  );
 }
 export default App;
