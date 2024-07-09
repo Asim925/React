@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import axios, { AxiosError } from "axios";
-
-interface Users {
-  id: number;
-  name: string;
-}
+import apiClient, { CanceledError } from "./services/api-client";
+import UserService, { Users } from "./services/user-services";
 
 // import ProductList from "./components/ProductList";
 
@@ -384,9 +380,10 @@ function App() {
   //
   // =================== Fetching The Data ===================== //
   //
-  // interface "USER" on top
+  // interface "USER" in user-services
   const [users, setUsers] = useState<Users[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   //============= async, await =========//
 
@@ -408,18 +405,88 @@ function App() {
   // ============= normal =========//
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((response) => setUsers(response.data))
-      .catch((err) => setError(err.message));
+    const { request, cancel } = UserService.getAllUsers();
+    request
+      .then((response) => {
+        setUsers(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        if (err instanceof CanceledError) return;
+        setError(err.message);
+        setIsLoading(false);
+      });
+
+    return () => cancel();
   }, []);
+
+  const orignalUsers = [...users]; // agr kabhi bhand aye to setUsers to orignal
+
+  let deleteUser = (user: Users) => {
+    setUsers(users.filter((u) => u.id !== user.id));
+
+    // updating server
+    UserService.deleteUser(user.id).catch((err) => {
+      setError(err.message);
+      setUsers(orignalUsers);
+    });
+  };
+
+  let addUser = () => {
+    let newUser = { id: 0, name: "asim" };
+    setUsers([newUser, ...users]);
+
+    UserService.createUser(newUser)
+      .then((response) => setUsers([response.data, ...users]))
+      .catch((err) => {
+        setError(err.message);
+        setUsers(orignalUsers);
+      });
+  };
+
+  let updateUser = (user: Users) => {
+    let updatedUser = { ...user, name: user.name + "!" };
+    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+
+    UserService.updateUser(updatedUser).catch((err) => {
+      setUsers(orignalUsers);
+      setError(err.message);
+    });
+  };
 
   return (
     <>
+      {isLoading && <div className="spinner-border"></div>}
       {error && <p className="text-danger">{error}</p>}
-      <ul>
+
+      {!isLoading && (
+        <button className="btn btn-primary mb-3" onClick={addUser}>
+          Add
+        </button>
+      )}
+
+      <ul className="list-group">
         {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li
+            className="list-group-item d-flex justify-content-between"
+            key={user.id}
+          >
+            {user.name}
+            <div>
+              <button
+                className="btn btn-outline-secondary mx-2"
+                onClick={() => updateUser(user)}
+              >
+                Update
+              </button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => deleteUser(user)}
+              >
+                Delete
+              </button>
+            </div>
+          </li>
         ))}
       </ul>
     </>
