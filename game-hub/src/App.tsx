@@ -6,7 +6,8 @@ import { useState } from "react";
 import PlatformSelector from "./components/PlatformSelector";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState(""); //genre
+  const [selectedPlatform, setSelectedPlatform] = useState("");
 
   return (
     <>
@@ -34,8 +35,14 @@ function App() {
         </Show>
 
         <GridItem area="main">
-          <PlatformSelector />
-          <GameGrid filterName={selectedGenre} />
+          <PlatformSelector
+            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+            selectedPlatform={selectedPlatform}
+          />
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            filterName={selectedGenre}
+          />
         </GridItem>
       </Grid>
     </>

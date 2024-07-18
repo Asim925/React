@@ -4,16 +4,15 @@ import GameCard from "./GameCard";
 
 interface Props {
   filterName: string;
+  selectedPlatform: string;
 }
 
-const GameGrid = ({ filterName }: Props) => {
-  const filteredGames = filterName
-    ? gamesData.filter((game) => game.genre === filterName)
-    : gamesData;
-  console.log("filterName:", filterName);
-  console.log("gamesData:", gamesData);
-  console.log("filteredGames:", filteredGames);
-
+const GameGrid = ({ filterName, selectedPlatform }: Props) => {
+  const filteredGames = gamesData.filter(
+    (game) =>
+      (!filterName || game.genre === filterName) && // if null then return all
+      (!selectedPlatform || game.platform.split(",").includes(selectedPlatform))
+  );
   return (
     <>
       <SimpleGrid
