@@ -1,4 +1,4 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { Button, HStack, Image, Text } from "@chakra-ui/react";
 let genres = [
   {
     name: "MMORPG",
@@ -58,13 +58,19 @@ let genres = [
   },
 ];
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: { name: string }) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   return (
     <ul>
       {genres.map((genre) => (
         <HStack marginY={3}>
           <Image borderRadius={"5px"} boxSize="33px" src={genre.img} />{" "}
-          <Text>{genre.name}</Text>
+          <Button onClick={() => onSelectGenre(genre)} variant="link">
+            {genre.name}
+          </Button>
         </HStack>
       ))}
     </ul>

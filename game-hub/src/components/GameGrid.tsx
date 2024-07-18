@@ -2,7 +2,18 @@ import { SimpleGrid } from "@chakra-ui/react";
 import gamesData from "../constants/gamesData";
 import GameCard from "./GameCard";
 
-const GameGrid = () => {
+interface Props {
+  filterName: string;
+}
+
+const GameGrid = ({ filterName }: Props) => {
+  const filteredGames = filterName
+    ? gamesData.filter((game) => game.genre === filterName)
+    : gamesData;
+  console.log("filterName:", filterName);
+  console.log("gamesData:", gamesData);
+  console.log("filteredGames:", filteredGames);
+
   return (
     <>
       <SimpleGrid
@@ -10,7 +21,7 @@ const GameGrid = () => {
         padding="10px"
         spacing={4}
       >
-        {gamesData.map((game) => (
+        {filteredGames.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}
       </SimpleGrid>
