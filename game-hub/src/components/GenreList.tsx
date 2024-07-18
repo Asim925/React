@@ -60,15 +60,20 @@ let genres = [
 
 interface Props {
   onSelectGenre: (genre: { name: string }) => void;
+  selectedGenre: string;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
     <ul>
       {genres.map((genre) => (
         <HStack marginY={3}>
           <Image borderRadius={"5px"} boxSize="33px" src={genre.img} />{" "}
-          <Button onClick={() => onSelectGenre(genre)} variant="link">
+          <Button
+            fontWeight={genre.name === selectedGenre ? "bold" : "normal"}
+            onClick={() => onSelectGenre(genre)}
+            variant="link"
+          >
             {genre.name}
           </Button>
         </HStack>
