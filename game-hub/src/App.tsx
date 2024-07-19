@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, Heading, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -7,8 +7,10 @@ import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState(""); //genre
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("All Games"); //genre
+  const [selectedPlatform, setSelectedPlatform] = useState("All");
+  const [text, setText] = useState("");
+  const [sortOrder, setSortOrder] = useState("Relevance");
 
   return (
     <>
@@ -23,7 +25,7 @@ function App() {
         }}
       >
         <GridItem area="nav">
-          <NavBar />
+          <NavBar onSearch={(searchText) => setText(searchText)} />
         </GridItem>
 
         <Show above="lg">
@@ -36,17 +38,26 @@ function App() {
         </Show>
 
         <GridItem area="main">
+          <Heading margin={3}>
+            {selectedGenre === "All Games" || selectedGenre === "Card Game"
+              ? selectedGenre
+              : selectedGenre + " Games"}
+          </Heading>
           <Flex margin={3}>
             <PlatformSelector
               onSelectPlatform={(platform) => setSelectedPlatform(platform)}
               selectedPlatform={selectedPlatform}
             />
-            <SortSelector />
+            <SortSelector
+              selectedOrder={sortOrder}
+              sortOrder={(order) => setSortOrder(order)}
+            />
           </Flex>
-
           <GameGrid
             selectedPlatform={selectedPlatform}
             filterName={selectedGenre}
+            search={text}
+            sort={sortOrder}
           />
         </GridItem>
       </Grid>

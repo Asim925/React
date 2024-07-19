@@ -13,7 +13,13 @@ const Score = ({ score }: Props) => {
       ? "yellow"
       : "red";
   return (
-    <Badge colorScheme={color} borderRadius={"10px"} paddingX={2} paddingY={1}>
+    <Badge
+      colorScheme={color}
+      borderRadius={"8px"}
+      margin={1}
+      paddingX={2}
+      paddingY={0.5}
+    >
       {score}
     </Badge>
   );

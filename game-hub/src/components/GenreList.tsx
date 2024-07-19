@@ -1,5 +1,9 @@
-import { Button, HStack, Image, Text } from "@chakra-ui/react";
+import { Button, HStack, Heading, Image } from "@chakra-ui/react";
 let genres = [
+  {
+    name: "All Games",
+    img: "https://e7.pngegg.com/pngimages/615/610/png-clipart-playstation-2-playstation-3-playstation-4-ps-logo-angle-text-thumbnail.png",
+  },
   {
     name: "MMORPG",
     img: "https://t3.ftcdn.net/jpg/05/50/17/46/360_F_550174637_nx2Gj2cQPLNpYENkJZHkl9xZqmZiU0gy.jpg",
@@ -65,20 +69,31 @@ interface Props {
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   return (
-    <ul>
-      {genres.map((genre) => (
-        <HStack marginY={3}>
-          <Image borderRadius={"5px"} boxSize="33px" src={genre.img} />{" "}
-          <Button
-            fontWeight={genre.name === selectedGenre ? "bold" : "normal"}
-            onClick={() => onSelectGenre(genre)}
-            variant="link"
-          >
-            {genre.name}
-          </Button>
-        </HStack>
-      ))}
-    </ul>
+    <>
+      <Heading fontSize={"2xl"} marginY={5}>
+        Genres
+      </Heading>
+      <ul>
+        {genres.map((genre) => (
+          <HStack marginY={3}>
+            <Image
+              borderRadius={"5px"}
+              boxSize="33px"
+              key={genres.indexOf(genre)}
+              src={genre.img}
+            />{" "}
+            <Button
+              paddingLeft={1}
+              fontWeight={genre.name === selectedGenre ? "bold" : "normal"}
+              onClick={() => onSelectGenre(genre)}
+              variant="link"
+            >
+              {genre.name}
+            </Button>
+          </HStack>
+        ))}
+      </ul>
+    </>
   );
 };
 
