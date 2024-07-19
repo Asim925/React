@@ -1,3 +1,5 @@
+import best from "../assets/best.png";
+import ok from "../assets/ok.png";
 import {
   Card,
   CardBody,
@@ -11,7 +13,6 @@ import { FaWindows } from "react-icons/fa";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
 import Score from "./Score";
-import gamesData from "../constants/gamesData";
 
 interface Game {
   id: number;
@@ -42,7 +43,12 @@ const GameCard = ({ game }: Props) => {
               <Icon key={game.id} as={iconMap[icon]} color="gray.400" />
             ))}
           </Box>
-          <Score score={game.id} />
+          <HStack>
+            {game.id >= 200 && (
+              <Image boxSize={"20px"} src={game.id > 350 ? best : ok} />
+            )}
+            <Score score={game.id} />
+          </HStack>
         </HStack>
       </CardBody>
     </Card>
