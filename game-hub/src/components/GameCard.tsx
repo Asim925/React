@@ -4,7 +4,6 @@ import {
   Heading,
   Icon,
   Image,
-  Text,
   Box,
   HStack,
 } from "@chakra-ui/react";
@@ -12,6 +11,7 @@ import { FaWindows } from "react-icons/fa";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
 import Score from "./Score";
+import gamesData from "../constants/gamesData";
 
 interface Game {
   id: number;
@@ -39,7 +39,7 @@ const GameCard = ({ game }: Props) => {
           <Box display={"flex"} gap={2} marginY={2}>
             {" "}
             {game.platform.split(",").map((icon) => (
-              <Icon as={iconMap[icon]} color="gray.400" />
+              <Icon key={game.id} as={iconMap[icon]} color="gray.400" />
             ))}
           </Box>
           <Score score={game.id} />
