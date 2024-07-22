@@ -7,9 +7,22 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-const NavBar = ({ onSearch }: Props) => {
+const NavBar = ({ onSearch = () => {} }: Props) => {
   return (
-    <div className="navBar">
+    <div
+      style={{
+        cursor: "pointer",
+        transition: "box-shadow 0.3s ease", // transition for box-shadow
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // default shadow
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = "0 4px 8px rgba(255, 0, 255, 0.5)"; // red shadow on hover
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)"; // default shadow
+      }}
+      className="navBar"
+    >
       <HStack padding="10px">
         <Image src={logo} boxSize={"60px"} />
         <SearchInput onSearch={onSearch} />
