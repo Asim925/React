@@ -14,6 +14,8 @@ const NavBar = ({ onSearch = () => {} }: Props) => {
         cursor: "pointer",
         transition: "box-shadow 0.3s ease", // transition for box-shadow
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", // default shadow
+        backdropFilter: "blur(50px)",
+        background: "rgba(0,0,0,0.5)",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.boxShadow = "0 4px 8px rgba(255, 0, 255, 0.5)"; // red shadow on hover

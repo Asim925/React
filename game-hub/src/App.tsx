@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem, Heading, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Heading, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -14,27 +14,37 @@ function App() {
 
   return (
     <>
+      <Box position="fixed" top="0" width="100%" zIndex="1000">
+        <NavBar onSearch={(searchText) => setText(searchText)} />
+      </Box>
+
       <Grid
+        marginTop="80px"
         templateAreas={{
-          base: `"nav" "main"`,
-          lg: `"nav nav" "aside main"`,
+          base: `"main"`,
+          lg: `"aside main"`,
         }}
         templateColumns={{
           base: "1fr",
           lg: "200px 1fr",
         }}
       >
-        <GridItem area="nav">
-          <NavBar onSearch={(searchText) => setText(searchText)} />
-        </GridItem>
-
         <Show above="lg">
-          <GridItem area="aside" marginX={5}>
+          <Box
+            position="fixed"
+            top="80px"
+            left="0"
+            width="fit-content"
+            height="calc(100vh - 80px)"
+            overflowY="auto"
+            zIndex="900"
+            paddingX={5}
+          >
             <GenreList
               onSelectGenre={(genre) => setSelectedGenre(genre.name)}
               selectedGenre={selectedGenre}
             />
-          </GridItem>
+          </Box>
         </Show>
 
         <GridItem area="main">
