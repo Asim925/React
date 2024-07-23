@@ -5,12 +5,7 @@ import App from "./App.tsx";
 import theme from "./theme";
 import "./index.css";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GameDetails from "./components/GameDetails.tsx";
 
 const router = createBrowserRouter([
