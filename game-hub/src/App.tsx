@@ -31,6 +31,7 @@ function App() {
       >
         <Show above="lg">
           <Box
+            className="GenreList"
             position="fixed"
             top="80px"
             left="0"
