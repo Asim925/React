@@ -1,7 +1,0 @@
-form {
-  width: 100%;
-}
-
-.GenreList::-webkit-scrollbar {
-  display: none; /* Hide the scrollbar in WebKit-based browsers (Chrome, Safari) */
-}
