@@ -13,6 +13,7 @@ import { FaWindows } from "react-icons/fa";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
 import Score from "./Score";
+import { Link } from "react-router-dom";
 
 interface Game {
   id: number;
@@ -20,6 +21,11 @@ interface Game {
   thumbnail: string;
   platform: string;
   game_url: string;
+  publisher: string;
+  release_date: string;
+  short_description: string;
+  developer: string;
+  genre: string;
 }
 
 interface Props {
@@ -33,7 +39,7 @@ const GameCard = ({ game }: Props) => {
   };
 
   return (
-    <a target="_blank" href={game.game_url}>
+    <Link to={"/game-details"} state={game}>
       <Card
         style={{
           cursor: "pointer",
@@ -71,7 +77,7 @@ const GameCard = ({ game }: Props) => {
           </HStack>
         </CardBody>
       </Card>
-    </a>
+    </Link>
   );
 };
 
