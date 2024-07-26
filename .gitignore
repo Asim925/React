@@ -1,3 +1,4 @@
 t
 node_modules
 .vercel
+.gitignore
