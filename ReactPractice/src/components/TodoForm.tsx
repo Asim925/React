@@ -11,7 +11,7 @@ const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   let queryClient = useQueryClient();
-  let addTodo = useMutation({
+  let addTodo = useMutation<Todo, Error, Todo>({
     mutationFn: (newTodo: Todo) =>
       axios
         .post<Todo>("https://jsonplaceholder.typicode.com/todos", newTodo)
@@ -46,16 +46,21 @@ const TodoForm = () => {
   };
 
   return (
-    <form className="row mb-3" onSubmit={handleSubmit}>
-      <div className="col">
-        <input ref={ref} type="text" className="form-control" />
-      </div>
-      <div className="col">
-        <button type="submit" className="btn btn-primary">
-          Add Todo
-        </button>
-      </div>
-    </form>
+    <>
+      {addTodo.error && (
+        <div className="alert alert-danger">{addTodo.error.message}</div>
+      )}
+      <form className="row mb-3" onSubmit={handleSubmit}>
+        <div className="col">
+          <input ref={ref} type="text" className="form-control" />
+        </div>
+        <div className="col">
+          <button type="submit" className="btn btn-primary">
+            Add Todo
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 
