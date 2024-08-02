@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 // import UserService, { Users } from "./services/user-services";
 import TodoList from "./components/TodoList";
 import PostList from "./components/PostList";
+import TodoForm from "./components/TodoForm";
 
 // import ProductList from "./components/ProductList";
 
@@ -481,8 +482,8 @@ function App() {
   // =====================++++++++++++++++++=================== INTERMEDIATE COURSE =====================++++++++++++++++++=================== //
   return (
     <>
-      {/* <TodoList /> */}
-      <PostList/>
+      <TodoForm />
+      <TodoList />
     </>
   );
 }
