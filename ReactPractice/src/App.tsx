@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import TodoList from "./components/TodoList";
 import PostList from "./components/PostList";
 import TodoForm from "./components/TodoForm";
+import Counter from "./State-management/Counter";
 
 // import ProductList from "./components/ProductList";
 
@@ -482,8 +483,9 @@ function App() {
   // =====================++++++++++++++++++=================== INTERMEDIATE COURSE =====================++++++++++++++++++=================== //
   return (
     <>
-      <TodoForm />
-      <TodoList />
+      {/* <TodoForm />
+      <TodoList /> */}
+      <Counter />
     </>
   );
 }

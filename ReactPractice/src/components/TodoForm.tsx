@@ -7,29 +7,43 @@ import axios from "axios";
 import { useRef } from "react";
 import { Todo } from "../hooks/useTodos";
 
+interface AddTodoConetxt {
+  previousTodos: Todo[];
+}
+
 const TodoForm = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   let queryClient = useQueryClient();
-  let addTodo = useMutation<Todo, Error, Todo>({
+
+  let addTodo = useMutation<Todo, Error, Todo, AddTodoConetxt>({
     mutationFn: (newTodo: Todo) =>
       axios
         .post<Todo>("https://jsonplaceholder.typicode.com/todos", newTodo)
         .then((response) => response.data),
 
-    onSuccess: (savedTodo, newTodo) => {
-      // newtodo pass kia saved todo update hoa
-      //
-      // APPROACH 1 : not applicable for JSON.placeholder
-      // queryClient.invalidateQueries({
-      //   queryKey: ["todos"],
-      // });
-      //
-      // APPROACH 1: updating cache
+    onMutate: (newTodo: Todo) => {
+      const previousTodos = queryClient.getQueryData<Todo[]>(["todos"]) || [];
+
       queryClient.setQueriesData<Todo[]>(["todos"], (todos) => [
-        savedTodo,
+        newTodo,
         ...(todos || []),
       ]);
+      if (ref.current && ref.current.value) ref.current.value = "";
+
+      // agr to bhand aye to phir purana data use hoga || agr nahi aye to naya wala
+      return { previousTodos };
+    },
+
+    onSuccess: (savedTodo, newTodo) => {
+      queryClient.setQueryData<Todo[]>(["todos"], (todos) =>
+        todos?.map((todo) => (todo === newTodo ? savedTodo : todo))
+      );
+    },
+
+    onError: (error, newTodo, context) => {
+      if (!context) return;
+      queryClient.setQueryData(["todos"], context.previousTodos);
     },
   });
 
@@ -55,8 +69,12 @@ const TodoForm = () => {
           <input ref={ref} type="text" className="form-control" />
         </div>
         <div className="col">
-          <button type="submit" className="btn btn-primary">
-            Add Todo
+          <button
+            disabled={addTodo.isLoading}
+            type="submit"
+            className="btn btn-primary"
+          >
+            {addTodo.isLoading ? "Adding" : "Add Todo"}
           </button>
         </div>
       </form>
