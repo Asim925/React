@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-// import apiClient, { CanceledError } from "./services/api-client";
-// import UserService, { Users } from "./services/user-services";
-import TodoList from "./components/TodoList";
-import PostList from "./components/PostList";
-import TodoForm from "./components/TodoForm";
-import Counter from "./State-management/Counter";
+import { useState } from "react";
+import ExpenseForm from "./components/Expense-Tracker/ExpenseForm";
+import ExpenseFilter from "./components/Expense-Tracker/ExpenseFilter";
+import ExpenseList from "./components/Expense-Tracker/ExpenseList";
 
 // import ProductList from "./components/ProductList";
 
@@ -481,11 +478,34 @@ function App() {
   // );
 
   // =====================++++++++++++++++++=================== INTERMEDIATE COURSE =====================++++++++++++++++++=================== //
+
+  let [expenses, setExpenses] = useState([
+    { id: 1, description: "AAA", amount: 5, category: "Utilities" },
+  ]);
+  let [selectedCategory, setSelectedCategory] = useState("");
+  let visibleExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory)
+    : expenses;
   return (
     <>
-      {/* <TodoForm />
-      <TodoList /> */}
-      <Counter />
+      <div className="mb-5">
+        <ExpenseForm
+          onSubmit={(data) =>
+            setExpenses([...expenses, { ...data, id: expenses.length + 1 }])
+          }
+        />
+      </div>
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
+      <ExpenseList
+        expenses={visibleExpenses}
+        onDelete={(id) =>
+          setExpenses(expenses.filter((expense) => expense.id !== id))
+        }
+      />
     </>
   );
 }
