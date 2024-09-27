@@ -1,6 +1,6 @@
 // import ProductList from "./components/ProductList";
 
-import Login from "./State-management/Login";
+import Counter2 from "./State-management/Stores/Counter2";
 
 // form
 // import Form from "./components/Form";
@@ -475,10 +475,14 @@ function App() {
   // );
 
   // =====================++++++++++++++++++=================== INTERMEDIATE COURSE =====================++++++++++++++++++=================== //
+  // let [user, dispatch] = useReducer(LoginReducer, "");
   return (
-    <>
-      <Login />
-    </>
+    // <>
+    //   <loginContext.Provider value={{ user, dispatch }}>
+    //     <Login />
+    //   </loginContext.Provider>
+    // </>
+    <Counter2 />
   );
 }
 export default App;

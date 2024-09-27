@@ -1,10 +1,10 @@
-import { useReducer, useState } from "react";
-import LoginReducer from "./reducers/LoginReducer";
+import { useContext } from "react";
+import loginContext from "./contexts/loginContext";
 
 const Login = () => {
-  let [login, dispatch] = useReducer(LoginReducer, "");
+  let { user, dispatch } = useContext(loginContext);
 
-  if (login)
+  if (user)
     return (
       <div style={{ fontSize: "2rem" }}>
         "ASIM"{" "}
