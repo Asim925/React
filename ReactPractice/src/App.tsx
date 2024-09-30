@@ -1,6 +1,6 @@
 // import ProductList from "./components/ProductList";
 
-import Counter2 from "./State-management/Stores/Counter2";
+import LoginStatus from "./components/login/LoginStatus.tsx";
 
 // form
 // import Form from "./components/Form";
@@ -477,12 +477,13 @@ function App() {
   // =====================++++++++++++++++++=================== INTERMEDIATE COURSE =====================++++++++++++++++++=================== //
   // let [user, dispatch] = useReducer(LoginReducer, "");
   return (
-    // <>
     //   <loginContext.Provider value={{ user, dispatch }}>
     //     <Login />
     //   </loginContext.Provider>
-    // </>
-    <Counter2 />
+    <>
+      <LoginStatus />
+    </>
+    // <Counter2 />
   );
 }
 export default App;
