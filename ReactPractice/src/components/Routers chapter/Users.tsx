@@ -1,20 +1,20 @@
-import { Link } from "react-router-dom";
-
 const Users = () => {
+  const users = [
+    { id: 1, name: "John Doe", email: "john@example.com" },
+    { id: 2, name: "Jane Smith", email: "jane@example.com" },
+    { id: 3, name: "Michael Johnson", email: "michael@example.com" },
+  ];
+
   return (
-    <div>
-      <ol>
-        <h1>
-          {" "}
-          <li>a</li>
-          <li>d</li>
-          <li>b</li>
-          <li>c</li>
-          <li>e</li>
-          <li>f</li>
-        </h1>
-      </ol>
-      <Link to={"/"}>Goto home page</Link>
+    <div style={{ padding: "20px" }}>
+      <h2>Users Page</h2>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            <strong>{user.name}</strong> - {user.email}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 // import ProductList from "./components/ProductList";
 
-import LoginStatus from "./components/login/LoginStatus.tsx";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Routers chapter/Navbar.tsx";
 
 // form
 // import Form from "./components/Form";
@@ -481,7 +482,7 @@ function App() {
     //     <Login />
     //   </loginContext.Provider>
     <>
-      <LoginStatus />
+      <Navbar />
     </>
     // <Counter2 />
   );
